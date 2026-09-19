@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>手寫卡片 · 3D</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- import map 的 polyfill，給 Safari 16.4 以前的瀏覽器。
+     支援 import map 的瀏覽器會直接略過它 -->
+<script async src="vendor/es-module-shims.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/"
+  }
+}
+</script>
+</head>
+<body>
+  <canvas id="stage"></canvas>
+
+  <!-- 暗角，壓在 canvas 上面 -->
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div id="hint" class="hint">載入中…</div>
+
+  <button id="auto-toggle" class="tool" title="自動旋轉" aria-pressed="false">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+         stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.5 12a8.5 8.5 0 1 1-2.5-6"/>
+      <path d="M20.7 3.8v4.6h-4.6"/>
+    </svg>
+  </button>
+
+  <noscript><p style="color:#bbb;font:14px system-ui;padding:2rem">需要啟用 JavaScript。</p></noscript>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

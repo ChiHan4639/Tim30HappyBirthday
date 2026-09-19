@@ -1,0 +1,43 @@
+:root{
+  --ui: rgba(255,255,255,.62);
+  --ui-dim: rgba(255,255,255,.34);
+  --line: rgba(255,255,255,.12);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:#000; overflow:hidden;
+  font:13px/1.5 -apple-system, "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+  color:var(--ui);
+  -webkit-font-smoothing:antialiased;
+  touch-action:none;
+}
+#stage{position:fixed; inset:0; width:100%; height:100%; display:block; cursor:grab; touch-action:none}
+#stage.dragging{cursor:grabbing}
+
+/* 暗角：讓黑背景不是死黑，邊緣再壓暗一點 */
+.vignette{
+  position:fixed; inset:0; pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 46%, transparent 38%, rgba(0,0,0,.55) 78%, rgba(0,0,0,.9) 100%);
+  mix-blend-mode:multiply;
+}
+
+.hint{
+  position:fixed; left:0; right:0; bottom:26px; text-align:center;
+  letter-spacing:.14em; font-size:11.5px; color:var(--ui-dim);
+  pointer-events:none; transition:opacity .8s ease; opacity:1;
+}
+.hint.gone{opacity:0}
+
+.tool{
+  position:fixed; top:16px; right:16px;
+  width:34px; height:34px;
+  display:grid; place-items:center; border-radius:9px; cursor:pointer;
+  background:rgba(255,255,255,.04); border:1px solid var(--line);
+  color:var(--ui-dim); transition:background .2s, color .2s, border-color .2s;
+}
+.tool:hover{color:var(--ui); background:rgba(255,255,255,.08)}
+.tool.on{color:#14130f; background:#e5ddcd; border-color:#e5ddcd}
+.tool.on svg{animation:spin 30s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){ .tool.on svg{animation:none} }
